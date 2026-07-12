@@ -1,0 +1,61 @@
+import React from 'react';
+import {Box, CardContent, CardMedia, Typography} from "@mui/material";
+import {CheckCircle} from "@mui/icons-material";
+
+
+function ChannelCard({channel, marginTop, marginL}) {
+    return (
+        <Box
+            sx={{
+                boxShadow: 'none',
+                borderRadius: '10px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '310px',
+                height: '326px',
+                background: 'linear-gradient(356deg,rgba(7, 217, 210, 1) 0%, rgba(23, 227, 156, 1) 43%, rgba(188, 237, 83, 1) 100%)',
+                marginTop: marginTop,
+                marginLeft: marginL
+
+            }}
+        >
+
+            <CardContent
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    textAlign: 'center',
+                    color: 'white'
+                }}
+            >
+                <CardMedia
+                    image={channel?.snippet?.thumbnails.high.url}
+                    alt={channel?.snippet?.title}
+                    sx={{
+                        borderRadius: '50%',
+                        height: '180px',
+                        width: '180px',
+                        mb: 2,
+                    }}
+                />
+
+
+                <Typography variant={'h6'}>
+                    {channel?.snippet?.title}{' '}
+                    <CheckCircle sx={{fontSize: '14px', color: 'white', ml: '5px'}}/>
+                </Typography>
+                {channel?.statistics?.subscriberCount && (
+                    <Typography sx={{fontSize: '15px', fontWeight: 'bold', color: 'white'}}>
+                        {parseInt(channel?.statistics?.subscriberCount).toLocaleString('en-Us')} Subscribers
+                    </Typography>
+                )}
+
+            </CardContent>
+        </Box>
+    );
+
+}
+
+export default ChannelCard;
